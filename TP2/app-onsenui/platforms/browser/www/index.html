@@ -1,0 +1,283 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="components/loader.js"></script>
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+
+  <script src="js/app.js"></script>
+
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script>
+    ons.ready(function() {
+      console.log("Onsen UI is ready!");
+    });
+
+    window.fn = {};
+    window.fn.open = function() {
+      var menu = document.getElementById('menu');
+      menu.open();
+    };
+    window.fn.load = function(page) {
+      var content = document.getElementById('content');
+      var menu = document.getElementById('menu');
+      content
+        .load(page)
+        .then(menu.close.bind(menu));
+    };
+
+  </script>
+</head>
+<body>
+  <ons-splitter>
+    <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+      <ons-page>
+        <ons-list>
+          <ons-list-item onclick="fn.load('home.html')" tappable>
+            Inicio
+          </ons-list-item>
+          <ons-list-item onclick="fn.load('calcular.html')" tappable>
+            Calcular
+          </ons-list-item>
+          <ons-list-item onclick="fn.load('conversor.html')" tappable>
+            Conversor
+          </ons-list-item>
+          <ons-list-item onclick="fn.load('verificador.html')" tappable>
+            Verificador
+          </ons-list-item>
+          <ons-list-item onclick="fn.load('consorcio.html')" tappable>
+            Consórcio
+          </ons-list-item>
+          <ons-list-item onclick="fn.load('combustivel.html')" tappable>
+            Combustível
+          </ons-list-item>
+          <ons-list-item onclick="fn.load('sobre.html')" tappable>
+            Sobre
+          </ons-list-item>
+        </ons-list>
+      </ons-page>
+    </ons-splitter-side>
+    <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+  </ons-splitter>
+
+  <ons-template id="home.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button onclick="fn.open()">
+            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center">
+          APP TP2
+        </div>
+      </ons-toolbar>
+      <h2 style="text-align: center">Bem-vindo!!!</h2>
+      <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+        Encontre as opções no menu lateral
+      </p>
+    </ons-page>
+  </ons-template>
+
+  <ons-template id="calcular.html">
+    <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button onclick="fn.open()">
+          <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">
+        Calcular
+      </div>
+    </ons-toolbar>
+    <div style="text-align: center; margin-top: 30px;">
+    <p>Entre com os dois números</p>
+    <p>
+      <ons-input id="num1" modifier="underbar" type="number" placeholder="Primeiro Número" float></ons-input>
+    </p>
+    <p>
+      <ons-input id="num2" modifier="underbar" type="number" placeholder="Segundo Número" float></ons-input>
+    </p>
+    <p style="margin-top: 30px;">
+      <ons-button onclick="calcula()">Calcular</ons-button>
+    </p>
+    </div>
+    <div>
+      <ons-list>
+      <ons-list-header>Resultado</ons-list-header>
+      <ons-list-item><span id="soma"></span></ons-list-item>
+      <ons-list-item><span id="subtracao"></span></ons-list-item>
+      <ons-list-item><span id="multiplicacao"></span></p></ons-list-item>
+      <ons-list-item><span id="divisao"></span></ons-list-item>
+    </ons-list>
+    </div>
+    </ons-page>
+  </ons-template>
+
+  <ons-template id="conversor.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button onclick="fn.open()">
+            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center">
+          Conversor
+        </div>
+      </ons-toolbar>
+      <div style="text-align: center; margin-top: 30px;">
+      <p>Entre com os dias </p>
+      <p>
+        <ons-input id="dias-input" modifier="underbar" type="number" placeholder="Dias" float></ons-input>
+      </p>
+      <p style="margin-top: 30px;">
+        <ons-button onclick="converter()">Converter</ons-button>
+      </p>
+    </div>
+    <div>
+      <ons-list>
+      <ons-list-header>Resultado</ons-list-header>
+      <ons-list-item><span id="anos"></span></p></ons-list-item>
+      <ons-list-item><span id="meses"></span></ons-list-item>
+      <ons-list-item><span id="semanas"></span></ons-list-item>
+      <ons-list-item><span id="dias"></span></ons-list-item>
+    </ons-list>
+    </div>
+    </ons-page>
+  </ons-template>
+
+  <ons-template id="verificador.html">
+      <ons-page>
+        <ons-toolbar>
+          <div class="left">
+            <ons-toolbar-button onclick="fn.open()">
+              <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+            </ons-toolbar-button>
+          </div>
+          <div class="center">
+            Verificador
+          </div>
+        </ons-toolbar>
+        <div style="text-align: center; margin-top: 30px;">
+        <p>Entre com um numero</p>
+        <p>
+          <ons-input id="num" modifier="underbar" type="number" placeholder="Numero" float></ons-input>
+        </p>
+        <p style="margin-top: 30px;">
+          <ons-button onclick="verifica()">Verificar</ons-button>
+        </p>
+      </div>
+        <div>
+          <ons-list>
+          <ons-list-header>Resultado</ons-list-header>
+          <ons-list-item><span id="par-impar"></span></p></ons-list-item>
+          <ons-list-item><span id="primo"></span></ons-list-item>
+        </ons-list>
+        </div>
+      </ons-page>
+  </ons-template>
+
+    <ons-template id="consorcio.html">
+      <ons-page>
+        <ons-toolbar>
+          <div class="left">
+            <ons-toolbar-button onclick="fn.open()">
+              <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+            </ons-toolbar-button>
+          </div>
+          <div class="center">
+            Consórcio
+          </div>
+        </ons-toolbar>
+        <div style="text-align: center; margin-top: 30px;">
+        <p>Entre com os dados do consórcio</p>
+        <p>
+          <ons-input id="valor-prestacao" modifier="underbar" type="number" placeholder="Valor" float></ons-input>
+        </p>
+        <p>
+          <ons-input id="parcelas" modifier="underbar" type="number" placeholder="Parcelas" float></ons-input>
+        </p>
+        <p>
+          <ons-input id="parcelas-pagas" modifier="underbar" type="number" placeholder="Pagas" float></ons-input>
+        </p>
+        <p style="margin-top: 30px;">
+          <ons-button onclick="consorcio()">Calcular</ons-button>
+        </p>
+      </div>
+      <div>
+        <ons-list>
+        <ons-list-header>Resultado</ons-list-header>
+        <ons-list-item>Total Pago<span id="pago"></span></p></ons-list-item>
+        <ons-list-item>Saldo Devedor<span id="devedor"></span></ons-list-item>
+      </ons-list>
+      </div>
+      </ons-page>
+    </ons-template>
+
+    <ons-template id="combustivel.html">
+      <ons-page>
+        <ons-toolbar>
+          <div class="left">
+            <ons-toolbar-button onclick="fn.open()">
+              <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+            </ons-toolbar-button>
+          </div>
+          <div class="center">
+            Gasolina
+          </div>
+        </ons-toolbar>
+        <div style="text-align: center; margin-top: 30px;">
+        <p>Entre com os dados da viagem</p>
+        <p>
+          <ons-input id="distancia" modifier="underbar" type="number" placeholder="Distância" float></ons-input>
+        </p>
+        <p>
+          <ons-input id="valor-gasolina" modifier="underbar" type="number" placeholder="Preço da Gasolina" float></ons-input>
+        </p>
+        <p>
+          <ons-input id="valor-etanol" modifier="underbar" type="number" placeholder="Preço do Etanol" float></ons-input>
+        </p>
+        <p style="margin-top: 30px;">
+          <ons-button onclick="combustivel()">Calcular</ons-button>
+        </p>
+      </div>
+      <div>
+        <ons-list>
+        <ons-list-header>Resultado</ons-list-header>
+        <ons-list-item>Gasolina<span id="gasolina"></span></p></ons-list-item>
+        <ons-list-item>Etanol<span id="etanol"></span></ons-list-item>
+        <ons-list-item><span id="vantagem"></span></ons-list-item>
+
+      </ons-list>
+      </div>
+      </ons-page>
+    </ons-template>
+
+  <ons-template id="sobre.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button onclick="fn.open()">
+          <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">
+        Sobre
+      </div>
+    </ons-toolbar>
+    <div style="text-align: center; margin-top: 30px;">
+      <h3>Técnicas de Programação II</h3>
+      <h4>Carlos Eduardo Borges</h4>
+  </ons-page>
+  </ons-template>
+
+</body>
+</html>
